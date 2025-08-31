@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Gallery</title>
+    <style>
+        body { margin: 0; padding: 0; background: #fff; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px; padding: 10px; }
+        img { width: 100%; height: auto; display: block; cursor: pointer; }
+        .modal { display: none; position: fixed; z-index: 1; padding-top: 100px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.9); }
+        .modal-content { margin: auto; display: block; width: 80%; max-width: 700px; }
+        .close { position: absolute; top: 15px; right: 35px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; }
+        .prev, .next { cursor: pointer; position: absolute; top: 50%; width: auto; padding: 16px; color: white; font-weight: bold; font-size: 18px; transition: 0.6s ease; border-radius: 0 3px 3px 0; user-select: none; }
+        .next { right: 0; border-radius: 3px 0 0 3px; }
+        .prev:hover, .next:hover { background-color: rgba(0,0,0,0.8); }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645068/1_hnrcmy.jpg">
+        <img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645071/2_uyzbuc.jpg">
+        <img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645069/3_db9hdn.jpg">
+        <img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645077/4_lkyzkp.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645070/5_dxivxk.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645070/6_eafukm.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645077/7_oqda1v.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645071/8_uf7nlr.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645074/9_c5mjwq.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645074/10_dbzccp.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645078/11_fybvll.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756645076/12_aqoiqv.jpg">
+	<img src="https://res.cloudinary.com/dxkuidd6d/image/upload/v1756648253/%D0%9D%D0%BE%D0%B2%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82_id_4094872_rpycfl.jpg">
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <script>
+        const modal = document.getElementById("myModal");
+        const modalImg = document.getElementById("img01");
+        const images = document.querySelectorAll(".gallery img");
+        let currentIndex = 0;
+
+        images.forEach((img, index) => {
+            img.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                currentIndex = index;
+            }
+        });
+
+        const close = document.getElementsByClassName("close")[0];
+        close.onclick = function() { modal.style.display = "none"; }
+
+        function plusSlides(n) {
+            currentIndex += n;
+            if (currentIndex >= images.length) { currentIndex = 0; }
+            if (currentIndex < 0) { currentIndex = images.length - 1; }
+            modalImg.src = images[currentIndex].src;
+        }
+    </script>
+</body>
+</html>
